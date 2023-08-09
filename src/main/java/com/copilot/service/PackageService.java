@@ -1,6 +1,10 @@
 package com.copilot.service;
 
 
+
+
+import java.util.Date;
+
 import com.copilot.model.Package;
 import com.copilot.model.Stop;
 import com.copilot.model.StopList;
@@ -25,6 +29,17 @@ public class PackageService {
         
         return finalStop;
 
+    }
+
+    public boolean isPackageDeliveredSuccessfully(Package pkg) {
+        Date newDate=new Date();
+        if(newDate.after(pkg.getShippingDate()) && newDate.after(pkg.getExpectedDelDate()))
+            return true;
+        else if(newDate.after(pkg.getShippingDate()) && newDate.before(pkg.getExpectedDelDate())){
+            return false;
+        }else{
+            return false;
+        }
     }
     
 }

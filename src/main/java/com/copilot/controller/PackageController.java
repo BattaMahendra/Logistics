@@ -21,5 +21,9 @@ public class PackageController {
         return service.stopNearToPackageDelivered(stopList, pkg);
  
     }
-    
+
+    @RequestMapping(value = "/isPackageDeliveredSuccessfully", method = RequestMethod.POST)
+    public boolean isPackageDeliveredSuccessfully(Package pkg){
+        return service.isPackageDeliveredSuccessfully(pkg);
+    }
 }
