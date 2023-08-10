@@ -26,4 +26,9 @@ public class PackageController {
     public boolean isPackageDeliveredSuccessfully(Package pkg){
         return service.isPackageDeliveredSuccessfully(pkg);
     }
+
+    @RequestMapping(value = "/findCostOfPackage", method = RequestMethod.POST)
+    public Double findCostOfPackage(Package pkg){
+        return service.findCostOfPackage(pkg);
+    }
 }

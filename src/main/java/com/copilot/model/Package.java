@@ -12,4 +12,8 @@ public class Package {
     int stopId;
     Date shippingDate;
     Date expectedDelDate;
+    Double costPrice;
+    Double discount;
+    Double bankDiscount;
+    Double exchangePrice;
 }

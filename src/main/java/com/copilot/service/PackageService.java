@@ -41,5 +41,15 @@ public class PackageService {
             return false;
         }
     }
+
+    public Double findCostOfPackage(Package pkg) {
+        Double selldiscount = (pkg.getCostPrice()*pkg.getDiscount())/100;
+        Double bankDiscount=(pkg.getCostPrice()*pkg.getBankDiscount())/100;
+        if(bankDiscount>1500){
+            bankDiscount=1500.0;
+        }
+        Double finalPrice=pkg.getCostPrice()-(selldiscount+bankDiscount+pkg.getExchangePrice()>5000?5000:5000);
+        return finalPrice;
+    }
     
 }
