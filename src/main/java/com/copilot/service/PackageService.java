@@ -13,19 +13,19 @@ public class PackageService {
 
     public Stop stopNearToPackageDelivered(StopList stopList, Package pkg) {
 
-       Stop finalStop= stopList.getStops().stream().map(stop -> 
+       Stop finalStop= stopList.getStops().stream().map(st -> 
         {
-            if(stop.getStopId() == pkg.getStopId()){
-                stop.setDistance(0);
+            if(st.getStopId() == pkg.getStopId()){
+                st.setDistance(0);
             }
-            else if(stop.getLat() == pkg.getLatitude() && stop.getLon() == pkg.getLongitude()){
-                stop.setDistance(0);
+            else if(st.getLat() == pkg.getLatitude() && st.getLon() == pkg.getLongitude()){
+                st.setDistance(0);
             }
-            else if(stop.getLat()> pkg.getLatitude() && stop.getLon() > pkg.getLongitude()){
-                stop.setDistance((stop.getLat() - pkg.getLatitude()) + (stop.getLon() - pkg.getLongitude()));
+            else if(st.getLat()> pkg.getLatitude() && st.getLon() > pkg.getLongitude()){
+                st.setDistance((st.getLat() - pkg.getLatitude()) + (st.getLon() - pkg.getLongitude()));
             }
-            return stop;
-        }).max((stop1, stop2) -> stop1.getDistance() > stop2.getDistance() ? 1 : -1).get();
+            return st;
+        }).min((st1, st2) -> st1.getDistance() > st2.getDistance() ? 1 : -1).get();
         
         return finalStop;
 
@@ -42,6 +42,8 @@ public class PackageService {
         }
     }
 
+
+    //Find the final cost of the package after all discounts
     public Double findCostOfPackage(Package pkg) {
         Double selldiscount = (pkg.getCostPrice()*pkg.getDiscount())/100;
         Double bankDiscount=(pkg.getCostPrice()*pkg.getBankDiscount())/100;
